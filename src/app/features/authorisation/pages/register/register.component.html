@@ -1,0 +1,27 @@
+
+<nm-vertical-split-layout title="Register">
+    <div class="nm-form-container">
+        <form [formGroup]="form" (ngSubmit)="handleFormSubmit($event)">
+            <div class="col-12">
+                <nm-input-text controlName="username" label="Username" required></nm-input-text>
+            </div>
+            <div class="col-12">
+                <nm-input-password controlName="password" label="Password" required></nm-input-password>
+            </div>
+            <div class="col-12">
+                <nm-input-password controlName="confirmPassword" label="Confirm Password" required></nm-input-password>
+            </div>
+            <div class="col-12">
+                <nm-input-text controlName="any" label="any"></nm-input-text>
+            </div>
+            <div class="col-12">
+                <div class="nm-form-footer">
+                    <a class="nm-simple-links" routerLink="/login">Login!</a>
+                </div>
+            </div>
+            <div class="col-12">
+                <nm-input-button label="Register"></nm-input-button>
+            </div>
+        </form>
+    </div>
+</nm-vertical-split-layout>

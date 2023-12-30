@@ -8,7 +8,7 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "nm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
@@ -90,6 +90,132 @@
             ],
             "styles": [
               "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "reader": {
+      "projectType": "library",
+      "root": "projects/reader",
+      "sourceRoot": "projects/reader/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/reader/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/reader/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/reader/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/reader/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "doco": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/doco",
+      "sourceRoot": "projects/doco/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/doco",
+            "index": "projects/doco/src/index.html",
+            "browser": "projects/doco/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/doco/tsconfig.app.json",
+            "assets": [
+              "projects/doco/src/favicon.ico",
+              "projects/doco/src/assets"
+            ],
+            "styles": [
+              "projects/doco/src/styles.css"
+            ],
+            "scripts": [],
+            "server": "projects/doco/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/doco/server.ts"
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "doco:build:production"
+            },
+            "development": {
+              "buildTarget": "doco:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "doco:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/doco/tsconfig.spec.json",
+            "assets": [
+              "projects/doco/src/favicon.ico",
+              "projects/doco/src/assets"
+            ],
+            "styles": [
+              "projects/doco/src/styles.css"
             ],
             "scripts": []
           }
