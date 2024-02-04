@@ -30,6 +30,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/authorisation/pages/change-password/change-password.component').then(mod=>mod.ChangePasswordComponent)
     },
     {
+        path: 'upload',
+        loadComponent: () => import('./features/registration/pages/bulk-upload-page/bulk-upload-page.component').then(c=>c.BulkUploadPageComponent)
+    },
+    {
         path: '', redirectTo: 'login', pathMatch: 'full'
     },
     // {

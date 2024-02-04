@@ -1,0 +1,23 @@
+ {{value | json}}
+
+<p-table [value]="registrations" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Product</th>
+            <th>Year</th>
+            <th>Country</th>
+            <th>Quantity</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowItem>
+        <tr>
+            <td>{{ rowItem[' Product '] }}</td>
+            <td>{{ rowItem.Year }}</td>
+            <td>{{ rowItem.Country }}</td>
+            <td>{{ rowItem.quantity }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="empty">
+        No Records!
+    </ng-template>
+</p-table>
